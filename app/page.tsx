@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
+import Link from 'next/link';
 import { DaliIcons } from '@/components/DaliIcons';
 import { TOPICS } from '@/lib/data/topics';
 import { LESSONS } from '@/lib/data/lessons';
@@ -40,6 +41,18 @@ const LEVELS = [
 
 // === BIOLO-AI IKONY (line-art, organické) ===
 const BioloIcons = {
+  // AI Chat - mozek/neurony
+  aiChat: ({ className }: { className?: string }) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <circle cx="12" cy="12" r="3" />
+      <circle cx="12" cy="5" r="2" />
+      <circle cx="19" cy="12" r="2" />
+      <circle cx="12" cy="19" r="2" />
+      <circle cx="5" cy="12" r="2" />
+      <path d="M12 9V7M15 12h2M12 15v2M9 12H7" />
+      <circle cx="12" cy="12" r="1" fill="currentColor" />
+    </svg>
+  ),
   // Mapa těla - krajina/reliéf
   bodyMap: ({ className }: { className?: string }) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -444,6 +457,18 @@ export default function BioloAIApp() {
             <span className="font-medium text-sm">{item.label}</span>
           </button>
         ))}
+        
+        {/* AI Chat Link */}
+        <Link
+          href="/chat"
+          className="w-full flex items-center gap-3 px-4 py-3 rounded-xl mb-1 transition-all
+                     bg-gradient-to-r from-[#7A9E8E]/20 to-[#5C7D6D]/20 
+                     text-white hover:from-[#7A9E8E]/30 hover:to-[#5C7D6D]/30 mt-4 border border-white/10"
+        >
+          <BioloIcons.aiChat className="w-5 h-5" />
+          <span className="font-medium text-sm">AI Profesor</span>
+          <span className="ml-auto text-xs bg-[#7A9E8E] px-2 py-0.5 rounded-full">NEW</span>
+        </Link>
       </nav>
 
       {/* Level indicator */}
@@ -482,6 +507,16 @@ export default function BioloAIApp() {
           </button>
         ))}
       </div>
+      
+      {/* Floating AI Chat Button */}
+      <Link
+        href="/chat"
+        className="absolute -top-16 right-4 w-14 h-14 bg-gradient-to-br from-[#7A9E8E] to-[#5C7D6D] 
+                   rounded-full shadow-lg flex items-center justify-center text-white
+                   hover:shadow-xl hover:scale-105 transition-all"
+      >
+        <BioloIcons.aiChat className="w-7 h-7" />
+      </Link>
     </nav>
   );
 
