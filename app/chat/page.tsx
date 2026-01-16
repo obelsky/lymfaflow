@@ -5,7 +5,7 @@
 // Samostatná stránka pro chat s profesory
 // ============================================
 
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { ChatWindow } from '@/components/Chat';
@@ -14,7 +14,7 @@ import { LESSONS } from '@/lib/data/lessons';
 import { TOPICS } from '@/lib/data/topics';
 import { ProfessorAvatar } from '@/components/Professor';
 
-export default function ChatPage() {
+function ChatPageContent() {
   const searchParams = useSearchParams();
   const professorIdParam = searchParams.get('professor');
   const lessonIdParam = searchParams.get('lesson');
@@ -202,5 +202,25 @@ export default function ChatPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+// Loading fallback
+function ChatPageLoading() {
+  return (
+    <div className="min-h-screen bg-[#FAF8F5] flex items-center justify-center">
+      <div className="text-center">
+        <div className="w-12 h-12 border-4 border-[#7A9E8E] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <p className="text-gray-600">Načítám...</p>
+      </div>
+    </div>
+  );
+}
+
+export default function ChatPage() {
+  return (
+    <Suspense fallback={<ChatPageLoading />}>
+      <ChatPageContent />
+    </Suspense>
   );
 }

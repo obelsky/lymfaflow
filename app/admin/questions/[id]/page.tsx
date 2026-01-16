@@ -4,7 +4,7 @@
 // POLYMATH ACADEMY - Quiz Question Editor
 // ============================================
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { 
   AdminLayout, 
@@ -31,7 +31,21 @@ interface QuestionData {
   is_published: boolean;
 }
 
-export default function QuestionEditor() {
+export default function QuestionEditorPage() {
+  return (
+    <Suspense fallback={
+      <AdminLayout title="Načítám..." subtitle="">
+        <div className="flex items-center justify-center py-12">
+          <div className="w-8 h-8 border-4 border-[#7A9E8E] border-t-transparent rounded-full animate-spin" />
+        </div>
+      </AdminLayout>
+    }>
+      <QuestionEditorContent />
+    </Suspense>
+  );
+}
+
+function QuestionEditorContent() {
   const params = useParams();
   const router = useRouter();
   const searchParams = useSearchParams();

@@ -1,13 +1,13 @@
 'use client';
 
 import Link from 'next/link';
+import { Suspense, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { AdminLayout, Card, Badge, Button, Select } from '@/components/Admin';
 import { QUIZ_QUESTIONS } from '@/lib/data/questions';
 import { TOPICS } from '@/lib/data/topics';
-import { useState } from 'react';
 
-export default function QuestionsPage() {
+function QuestionsContent() {
   const searchParams = useSearchParams();
   const topicFilter = searchParams.get('topic') || '';
   const [selectedTopic, setSelectedTopic] = useState(topicFilter);
@@ -18,8 +18,6 @@ export default function QuestionsPage() {
     : TOPICS.flatMap(topic => 
         (QUIZ_QUESTIONS[topic.id] || []).map(q => ({ ...q, topic_id: topic.id }))
       );
-  
-  const selectedTopicData = TOPICS.find(t => t.id === selectedTopic);
   
   return (
     <AdminLayout 
@@ -96,5 +94,23 @@ export default function QuestionsPage() {
         </div>
       </Card>
     </AdminLayout>
+  );
+}
+
+function QuestionsLoading() {
+  return (
+    <AdminLayout title="Otázky" subtitle="Načítám...">
+      <div className="flex items-center justify-center py-12">
+        <div className="w-8 h-8 border-4 border-[#7A9E8E] border-t-transparent rounded-full animate-spin" />
+      </div>
+    </AdminLayout>
+  );
+}
+
+export default function QuestionsPage() {
+  return (
+    <Suspense fallback={<QuestionsLoading />}>
+      <QuestionsContent />
+    </Suspense>
   );
 }

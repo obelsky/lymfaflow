@@ -5,7 +5,7 @@
 // Block-based editor pro obsah lekcí
 // ============================================
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { 
@@ -56,7 +56,21 @@ const blockLabels: Record<BlockType, string> = {
 // Generate unique ID
 const generateId = () => Math.random().toString(36).substr(2, 9);
 
-export default function LessonEditor() {
+export default function LessonEditorPage() {
+  return (
+    <Suspense fallback={
+      <AdminLayout title="Načítám..." subtitle="">
+        <div className="flex items-center justify-center py-12">
+          <div className="w-8 h-8 border-4 border-[#7A9E8E] border-t-transparent rounded-full animate-spin" />
+        </div>
+      </AdminLayout>
+    }>
+      <LessonEditorContent />
+    </Suspense>
+  );
+}
+
+function LessonEditorContent() {
   const params = useParams();
   const router = useRouter();
   const searchParams = useSearchParams();
