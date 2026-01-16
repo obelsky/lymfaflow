@@ -49,7 +49,7 @@ export const ProfessorCard: React.FC<ProfessorCardProps> = ({
         `}
         style={{ 
           backgroundColor: selected ? `${professor.accentColor}10` : undefined,
-          ringColor: selected ? professor.accentColor : undefined,
+          boxShadow: selected ? `0 0 0 2px ${professor.accentColor}` : undefined,
         }}
       >
         <div 
@@ -97,7 +97,7 @@ export const ProfessorCard: React.FC<ProfessorCardProps> = ({
           ${className}
         `}
         style={{ 
-          ringColor: selected ? professor.accentColor : undefined,
+          boxShadow: selected ? `0 0 0 2px ${professor.accentColor}` : undefined,
         }}
       >
         {/* Selected indicator */}
