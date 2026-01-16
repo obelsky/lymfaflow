@@ -65,7 +65,7 @@ export function TopicView({
             </div>
             <div className="flex-1">
               <h2 className="font-semibold text-[#2D3640] mb-1">{topic.title}</h2>
-              <p className="text-sm text-[#6B7B8A] mb-3">{topic.description}</p>
+              <p className="text-sm text-[#6B7B8A] mb-3">{topic.subtitle}</p>
               <div className="flex items-center gap-4 text-sm">
                 <span className="text-[#6B7B8A]">
                   {completedInTopic}/{lessons.length} lekcí
@@ -134,7 +134,7 @@ export function TopicView({
                   <div className="flex-1">
                     <h4 className="font-medium text-[#2D3640]">{lesson.title}</h4>
                     <p className="text-xs text-[#6B7B8A]">
-                      {lesson.points.length} pojmů • {lesson.estimated_minutes || 5} min
+                      {lesson.points.length} pojmů • ~{Math.max(3, lesson.points.length * 2)} min
                     </p>
                   </div>
                   {!isLocked && (

@@ -64,7 +64,7 @@ export const TOPICS: Topic[] = [
     icon: 'Arm',
     color: '#CD853F',
     sort_order: 6,
-    is_locked: true,
+    is_locked: false,
   },
   {
     id: 'topic-dk',
@@ -74,7 +74,7 @@ export const TOPICS: Topic[] = [
     icon: 'Leg',
     color: '#8B4513',
     sort_order: 7,
-    is_locked: true,
+    is_locked: false,
   },
   {
     id: 'topic-svaly',
@@ -84,7 +84,7 @@ export const TOPICS: Topic[] = [
     icon: 'Muscle',
     color: '#DC143C',
     sort_order: 8,
-    is_locked: true,
+    is_locked: false,
   },
 ];
 
