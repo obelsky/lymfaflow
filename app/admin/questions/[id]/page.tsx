@@ -77,7 +77,7 @@ export default function QuestionEditor() {
           lesson_id: '',
           question: foundQuestion.question,
           options: foundQuestion.options,
-          correct_index: foundQuestion.correct,
+          correct_index: foundQuestion.correct_index,
           explanation: foundQuestion.explanation,
           difficulty: 1,
           is_published: true,

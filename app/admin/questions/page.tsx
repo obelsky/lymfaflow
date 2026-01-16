@@ -87,7 +87,7 @@ export default function QuestionsPage() {
                         </span>
                       </div>
                     </div>
-                    <Badge variant="success">Správná: {question.options[question.correct]?.slice(0, 20)}...</Badge>
+                    <Badge variant="success">Správná: {question.options[question.correct_index]?.slice(0, 20)}...</Badge>
                   </div>
                 </Link>
               );
