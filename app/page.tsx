@@ -246,6 +246,73 @@ export default function BioloAIApp() {
     reviewIndex: 0,
   });
   const [dailyQuestions, setDailyQuestions] = useState<QuizQuestion[]>([]);
+  
+  // AI State
+  const [aiExplanation, setAiExplanation] = useState<{
+    text: string;
+    professor: string;
+    loading: boolean;
+  }>({ text: '', professor: '', loading: false });
+  const [termExplanation, setTermExplanation] = useState<{
+    term: string;
+    text: string;
+    loading: boolean;
+  } | null>(null);
+
+  // Fetch AI explanation for wrong answer
+  const fetchAiExplanation = async (question: string, wrongAnswer: string, correctAnswer: string) => {
+    setAiExplanation({ text: '', professor: '', loading: true });
+    try {
+      const res = await fetch('/api/explain', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'wrong_answer',
+          question,
+          wrongAnswer,
+          correctAnswer,
+          professorStyle: 'visual',
+        }),
+      });
+      const data = await res.json();
+      setAiExplanation({ 
+        text: data.explanation, 
+        professor: data.professor || 'Da Vinci',
+        loading: false 
+      });
+    } catch (error) {
+      setAiExplanation({ 
+        text: 'Zkus si zapamatovat latinský původ slova.', 
+        professor: 'Da Vinci',
+        loading: false 
+      });
+    }
+  };
+
+  // Fetch AI explanation for term
+  const fetchTermExplanation = async (term: string, definition: string) => {
+    setTermExplanation({ term, text: '', loading: true });
+    try {
+      const res = await fetch('/api/explain', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'term',
+          term,
+          definition,
+          professorStyle: 'visual',
+        }),
+      });
+      const data = await res.json();
+      setTermExplanation({ 
+        term, 
+        text: data.explanation,
+        loading: false 
+      });
+    } catch (error) {
+      setTermExplanation({ term, text: definition, loading: false });
+    }
+  };
 
   // Level calculation
   const getCurrentLevel = useCallback(() => {
@@ -334,10 +401,24 @@ export default function BioloAIApp() {
       answers: [...prev.answers, { questionId: question.id, answer: answerIndex, correct: isCorrect }],
       showFeedback: true,
     }));
+
+    // Fetch AI explanation for wrong answers
+    if (!isCorrect) {
+      fetchAiExplanation(
+        question.question,
+        question.options[answerIndex],
+        question.options[question.correct_index]
+      );
+    } else {
+      setAiExplanation({ text: '', professor: '', loading: false });
+    }
   };
 
   const nextQuestion = (isDaily = false) => {
     const questions = isDaily ? dailyQuestions : (QUIZ_QUESTIONS[selectedTopic?.id || ''] || []);
+    
+    // Reset AI explanation
+    setAiExplanation({ text: '', professor: '', loading: false });
     
     if (quizState.currentQuestion < questions.length - 1) {
       setQuizState(prev => ({
@@ -744,9 +825,19 @@ export default function BioloAIApp() {
           <h3 className="text-sm font-semibold text-[#6B7B8A] uppercase tracking-wide mb-3">Klíčové pojmy</h3>
           <div className="space-y-3 mb-6">
             {selectedLesson.points.map((point, i) => (
-              <div key={i} className="bg-white border border-[#E2E6EA] rounded-xl p-4">
+              <div key={i} className="bg-white border border-[#E2E6EA] rounded-xl p-4 group">
                 <div className="flex items-start justify-between gap-3 mb-2">
-                  <h4 className="font-semibold text-[#2D3640]">{point.term}</h4>
+                  <div className="flex items-center gap-2">
+                    <h4 className="font-semibold text-[#2D3640]">{point.term}</h4>
+                    {/* AI Ask button */}
+                    <button
+                      onClick={() => fetchTermExplanation(point.term, point.definition)}
+                      className="opacity-0 group-hover:opacity-100 transition-opacity w-6 h-6 rounded-full bg-[#7A9E8E]/10 hover:bg-[#7A9E8E]/20 flex items-center justify-center"
+                      title="Vysvětli jinak"
+                    >
+                      <span className="text-xs">💡</span>
+                    </button>
+                  </div>
                   {point.latin && (
                     <span className="text-xs text-[#9BA8B4] italic bg-[#F7F4EF] px-2 py-0.5 rounded">
                       {point.latin}
@@ -754,7 +845,34 @@ export default function BioloAIApp() {
                   )}
                 </div>
                 <p className="text-sm text-[#6B7B8A] leading-relaxed">{point.definition}</p>
-                {point.tip && (
+                
+                {/* AI Explanation inline */}
+                {termExplanation?.term === point.term && (
+                  <div className="mt-3 p-3 bg-[#F0F5F2] rounded-lg border border-[#A8C4B8]/30">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-5 h-5 rounded-full bg-[#7A9E8E] flex items-center justify-center">
+                        <BioloIcons.aiChat className="w-3 h-3 text-white" />
+                      </div>
+                      <span className="text-xs font-semibold text-[#7A9E8E]">Da Vinci vysvětluje</span>
+                      <button 
+                        onClick={() => setTermExplanation(null)}
+                        className="ml-auto text-xs text-[#9BA8B4] hover:text-[#6B7B8A]"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                    {termExplanation.loading ? (
+                      <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 border-2 border-[#7A9E8E] border-t-transparent rounded-full animate-spin" />
+                        <span className="text-xs text-[#6B7B8A]">Přemýšlím...</span>
+                      </div>
+                    ) : (
+                      <p className="text-sm text-[#2D3640]">{termExplanation.text}</p>
+                    )}
+                  </div>
+                )}
+                
+                {point.tip && !termExplanation?.term && (
                   <div className="mt-3 p-3 bg-[#FAF6ED] rounded-lg">
                     <p className="text-xs text-[#A68B4B]">{point.tip}</p>
                   </div>
@@ -867,32 +985,64 @@ export default function BioloAIApp() {
 
           {/* Feedback */}
           {quizState.showFeedback && (
-            <div className={`mt-6 p-5 rounded-xl ${currentAnswer?.correct ? 'bg-[#EDF5EF] border border-[#6B9E7A]/30' : 'bg-[#FAF6ED] border border-[#C9A962]/30'}`}>
-              <div className="flex items-start gap-3 mb-3">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${currentAnswer?.correct ? 'bg-[#6B9E7A]' : 'bg-[#C9A962]'}`}>
-                  {currentAnswer?.correct ? (
-                    <BioloIcons.checkCircle className="w-4 h-4 text-white" />
-                  ) : (
-                    <BioloIcons.info className="w-4 h-4 text-white" />
-                  )}
-                </div>
-                <div>
-                  <h4 className={`font-semibold mb-1 ${currentAnswer?.correct ? 'text-[#5C7D6D]' : 'text-[#A68B4B]'}`}>
-                    {currentAnswer?.correct ? 'Správně!' : 'Správná odpověď:'}
-                  </h4>
-                  {!currentAnswer?.correct && (
-                    <p className="font-medium text-[#2D3640] mb-2">{question.options[question.correct_index]}</p>
-                  )}
-                  <p className="text-sm text-[#6B7B8A] leading-relaxed">{question.explanation}</p>
+            <div className={`mt-6 rounded-2xl overflow-hidden ${currentAnswer?.correct ? 'bg-[#EDF5EF] border border-[#6B9E7A]/30' : 'bg-gradient-to-b from-[#FAF6ED] to-[#F5EFE6] border border-[#C9A962]/30'}`}>
+              {/* Hlavní feedback */}
+              <div className="p-5">
+                <div className="flex items-start gap-3">
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${currentAnswer?.correct ? 'bg-[#6B9E7A]' : 'bg-[#C9A962]'}`}>
+                    {currentAnswer?.correct ? (
+                      <BioloIcons.checkCircle className="w-5 h-5 text-white" />
+                    ) : (
+                      <span className="text-white text-lg">✕</span>
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <h4 className={`font-bold text-lg mb-1 ${currentAnswer?.correct ? 'text-[#5C7D6D]' : 'text-[#A68B4B]'}`}>
+                      {currentAnswer?.correct ? '🎉 Správně!' : 'Správná odpověď:'}
+                    </h4>
+                    {!currentAnswer?.correct && (
+                      <p className="font-semibold text-[#2D3640] text-lg">{question.options[question.correct_index]}</p>
+                    )}
+                  </div>
                 </div>
               </div>
 
-              <button
-                onClick={() => nextQuestion(isDaily)}
-                className="w-full mt-4 py-3 bg-[#7A9E8E] hover:bg-[#5C7D6D] text-white rounded-xl font-medium transition-all"
-              >
-                {quizState.currentQuestion < questions.length - 1 ? 'Další otázka' : 'Zobrazit výsledky'}
-              </button>
+              {/* AI Vysvětlení - pouze při špatné odpovědi */}
+              {!currentAnswer?.correct && (
+                <div className="px-5 pb-5">
+                  <div className="bg-white/80 rounded-xl p-4 border border-[#E8E0D0]">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-6 h-6 rounded-full bg-[#7A9E8E] flex items-center justify-center">
+                        <BioloIcons.aiChat className="w-4 h-4 text-white" />
+                      </div>
+                      <span className="text-xs font-semibold text-[#7A9E8E] uppercase tracking-wide">
+                        {aiExplanation.loading ? 'Přemýšlím...' : `${aiExplanation.professor || 'Da Vinci'} radí`}
+                      </span>
+                    </div>
+                    
+                    {aiExplanation.loading ? (
+                      <div className="flex items-center gap-2 text-[#6B7B8A]">
+                        <div className="w-4 h-4 border-2 border-[#7A9E8E] border-t-transparent rounded-full animate-spin" />
+                        <span className="text-sm">Připravuji vysvětlení...</span>
+                      </div>
+                    ) : (
+                      <p className="text-[#2D3640] leading-relaxed">
+                        {aiExplanation.text || question.explanation}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Tlačítko */}
+              <div className="px-5 pb-5">
+                <button
+                  onClick={() => nextQuestion(isDaily)}
+                  className="w-full py-4 bg-[#7A9E8E] hover:bg-[#5C7D6D] text-white rounded-xl font-semibold transition-all shadow-sm hover:shadow-md"
+                >
+                  {quizState.currentQuestion < questions.length - 1 ? 'Další otázka →' : 'Zobrazit výsledky →'}
+                </button>
+              </div>
             </div>
           )}
         </div>
