@@ -2,8 +2,29 @@
 
 import React, { useState, useCallback } from 'react';
 import { DaliIcons } from '@/components/DaliIcons';
-import { TOPICS, LESSONS, LEVELS, type Topic, type Lesson } from '@/lib/lessons';
-import { QUIZ_QUESTIONS, getRandomQuestions, type QuizQuestion } from '@/lib/questions';
+import { TOPICS } from '@/lib/data/topics';
+import { LESSONS } from '@/lib/data/lessons';
+import { QUIZ_QUESTIONS } from '@/lib/data/questions';
+import type { Topic, Lesson, QuizQuestion } from '@/types';
+
+// Helper funkce
+const getRandomQuestions = (topicId: string, count: number = 5): QuizQuestion[] => {
+  const questions = QUIZ_QUESTIONS[topicId] || [];
+  const shuffled = [...questions].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+};
+
+// Levels
+const LEVELS = [
+  { level: 1, name: 'Nováček', icon: '🌟', minXP: 0, maxXP: 50 },
+  { level: 2, name: 'Objevitel', icon: '🔍', minXP: 50, maxXP: 100 },
+  { level: 3, name: 'Učeň', icon: '🌱', minXP: 100, maxXP: 200 },
+  { level: 4, name: 'Student', icon: '📚', minXP: 200, maxXP: 350 },
+  { level: 5, name: 'Praktikant', icon: '🔬', minXP: 350, maxXP: 500 },
+  { level: 6, name: 'Pokročilý', icon: '⭐', minXP: 500, maxXP: 700 },
+  { level: 7, name: 'Expert', icon: '🎓', minXP: 700, maxXP: 1000 },
+  { level: 8, name: 'Mistr', icon: '👑', minXP: 1000, maxXP: Infinity },
+];
 
 // ============================================
 // BIOLO-AI: Living Anatomy Explorer
@@ -286,7 +307,7 @@ export default function BioloAIApp() {
     
     const questions = isDaily ? dailyQuestions : (QUIZ_QUESTIONS[selectedTopic?.id || ''] || []);
     const question = questions[quizState.currentQuestion];
-    const isCorrect = answerIndex === question.correct;
+    const isCorrect = answerIndex === question.correct_index;
     
     setQuizState(prev => ({
       ...prev,
@@ -768,7 +789,7 @@ export default function BioloAIApp() {
           <div className="space-y-3">
             {question.options.map((option, i) => {
               const isSelected = currentAnswer?.answer === i;
-              const isCorrect = i === question.correct;
+              const isCorrect = i === question.correct_index;
               const showFeedback = quizState.showFeedback;
 
               let styles = 'bg-white border-[#E2E6EA] hover:border-[#A8C4B8]';
@@ -818,7 +839,7 @@ export default function BioloAIApp() {
                     {currentAnswer?.correct ? 'Správně!' : 'Správná odpověď:'}
                   </h4>
                   {!currentAnswer?.correct && (
-                    <p className="font-medium text-[#2D3640] mb-2">{question.options[question.correct]}</p>
+                    <p className="font-medium text-[#2D3640] mb-2">{question.options[question.correct_index]}</p>
                   )}
                   <p className="text-sm text-[#6B7B8A] leading-relaxed">{question.explanation}</p>
                 </div>
@@ -876,7 +897,7 @@ export default function BioloAIApp() {
               <h3 className="font-semibold text-[#2D3640] mb-4">{wrongQuestion.question}</h3>
               <div className="space-y-2">
                 {wrongQuestion.options.map((option, i) => {
-                  const isCorrect = i === wrongQuestion.correct;
+                  const isCorrect = i === wrongQuestion.correct_index;
                   const wasSelected = i === wrongAnswer.answer;
                   return (
                     <div 

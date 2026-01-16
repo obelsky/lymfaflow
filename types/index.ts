@@ -3,6 +3,12 @@
 // Vibekodex Methodology
 // ============================================
 
+// Re-export professor types
+export * from './professor';
+
+// Re-export database types
+export * from './database';
+
 // === DATABASE ENTITY TYPES ===
 // These mirror the Supabase schema (prepared for migration)
 
@@ -150,32 +156,8 @@ export interface AchievementCondition {
   topic_id?: string;
 }
 
-// === PROFESSOR SYSTEM (Polymath Academy) ===
-
-export interface Professor {
-  id: string;
-  slug: string;
-  name: string;
-  short_name: string;
-  avatar: string;
-  primary_field: string;
-  secondary_fields: string[];
-  personality: ProfessorPersonality;
-  system_prompt: string;
-  signature_phrases: string[];
-  teaching_method: 'visual' | 'socratic' | 'experimental' | 'storytelling' | 'debugging';
-  is_active: boolean;
-}
-
-export interface ProfessorPersonality {
-  formality: 1 | 2 | 3 | 4 | 5;
-  complexity: 1 | 2 | 3 | 4 | 5;
-  humor: boolean;
-  use_analogies: boolean;
-  use_etymology: boolean;
-  use_stories: boolean;
-  ask_questions: boolean;
-}
+// === PROFESSOR SYSTEM ===
+// Types are exported from ./professor.ts
 
 // === APP STATE TYPES ===
 
