@@ -702,7 +702,7 @@ export default function BioloAIApp() {
           {/* Lidsky */}
           <div className="bg-[#FAF6ED] border border-[#C9A962]/30 rounded-2xl p-5 mb-6">
             <p className="text-xs font-semibold text-[#A68B4B] uppercase tracking-wide mb-1">Lidsky řečeno</p>
-            <p className="text-[#2D3640]">{selectedLesson.human}</p>
+            <p className="text-[#2D3640]">{selectedLesson.human_explanation}</p>
           </div>
 
           {/* Klíčové pojmy */}
@@ -718,7 +718,7 @@ export default function BioloAIApp() {
                     </span>
                   )}
                 </div>
-                <p className="text-sm text-[#6B7B8A] leading-relaxed">{point.def}</p>
+                <p className="text-sm text-[#6B7B8A] leading-relaxed">{point.definition}</p>
                 {point.tip && (
                   <div className="mt-3 p-3 bg-[#FAF6ED] rounded-lg">
                     <p className="text-xs text-[#A68B4B]">{point.tip}</p>
