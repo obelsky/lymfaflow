@@ -14,6 +14,13 @@ const getRandomQuestions = (topicId: string, count: number = 5): QuizQuestion[] 
   return shuffled.slice(0, count);
 };
 
+// Denní trénink - náhodné otázky ze všech témat
+const getDailyQuestions = (count: number = 5): QuizQuestion[] => {
+  const allQuestions = Object.values(QUIZ_QUESTIONS).flat();
+  const shuffled = [...allQuestions].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+};
+
 // Levels
 const LEVELS = [
   { level: 1, name: 'Nováček', icon: '🌟', minXP: 0, maxXP: 50 },
@@ -288,7 +295,7 @@ export default function BioloAIApp() {
   };
 
   const startDailyTraining = () => {
-    const questions = getRandomQuestions(5);
+    const questions = getDailyQuestions(5);
     setDailyQuestions(questions);
     setQuizState({
       currentQuestion: 0,
