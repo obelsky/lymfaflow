@@ -9,7 +9,7 @@ import React, { useState, useCallback } from 'react';
 
 // Components
 import { Sidebar, BottomNav } from '@/components/Navigation';
-import { KnowledgeBase } from '@/components/KnowledgeBase';
+import KnowledgeBase from '@/components/KnowledgeBase';
 import { BiologiqueRecherche } from '@/components/BR';
 import {
   HomeView,
