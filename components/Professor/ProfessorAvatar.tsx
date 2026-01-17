@@ -272,6 +272,147 @@ export const MarieAvatar: React.FC<AvatarProps> = ({ className = '', color = 'cu
   </svg>
 );
 
+// Steve Jobs - minimalistický, rolák, kulaté brýle
+export const SteveAvatar: React.FC<AvatarProps> = ({ className = '', color = 'currentColor' }) => (
+  <svg viewBox="0 0 64 64" fill="none" className={className}>
+    {/* Pozadí */}
+    <circle cx="32" cy="32" r="30" fill={color} opacity="0.1" />
+    
+    {/* Hlava - holá/krátké vlasy */}
+    <ellipse cx="32" cy="28" rx="12" ry="14" stroke={color} strokeWidth="2" fill="none" />
+    
+    {/* Krátké vlasy nahoře */}
+    <path d="M22 22c2-4 6-6 10-6s8 2 10 6" stroke={color} strokeWidth="1.5" opacity="0.5" />
+    
+    {/* Kulaté brýle */}
+    <circle cx="27" cy="28" r="5" stroke={color} strokeWidth="1.5" fill="none" />
+    <circle cx="37" cy="28" r="5" stroke={color} strokeWidth="1.5" fill="none" />
+    <path d="M32 28h0" stroke={color} strokeWidth="2" />
+    
+    {/* Oči za brýlemi */}
+    <circle cx="27" cy="28" r="1.5" fill={color} />
+    <circle cx="37" cy="28" r="1.5" fill={color} />
+    
+    {/* Nos */}
+    <path d="M32 30v4" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+    
+    {/* Ústa - přímá, soustředěná */}
+    <path d="M28 38h8" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+    
+    {/* Černý rolák */}
+    <path 
+      d="M20 44c0-2 5-4 12-4s12 2 12 4v10H20v-10z" 
+      stroke={color} 
+      strokeWidth="2" 
+      fill="none"
+    />
+    <path d="M26 44v-2c0-1 3-2 6-2s6 1 6 2v2" stroke={color} strokeWidth="1.5" opacity="0.5" />
+  </svg>
+);
+
+// Nikola Tesla - hladké vlasy dozadu, knír, intenzivní pohled
+export const TeslaAvatar: React.FC<AvatarProps> = ({ className = '', color = 'currentColor' }) => (
+  <svg viewBox="0 0 64 64" fill="none" className={className}>
+    {/* Pozadí */}
+    <circle cx="32" cy="32" r="30" fill={color} opacity="0.1" />
+    
+    {/* Vlasy - hladké, sčesané dozadu */}
+    <path 
+      d="M20 28c0-10 5-16 12-16s12 6 12 16" 
+      stroke={color} 
+      strokeWidth="2" 
+      strokeLinecap="round"
+      fill="none"
+    />
+    <path d="M22 24c0-8 4-12 10-12s10 4 10 12" stroke={color} strokeWidth="1.5" opacity="0.5" />
+    <path d="M24 22c0-6 3-8 8-8s8 2 8 8" stroke={color} strokeWidth="1" opacity="0.3" />
+    
+    {/* Obličej - ostrý, úzký */}
+    <ellipse cx="32" cy="34" rx="10" ry="14" stroke={color} strokeWidth="2" fill="none" />
+    
+    {/* Oči - intenzivní, hluboké */}
+    <circle cx="28" cy="32" r="2" fill={color} />
+    <circle cx="36" cy="32" r="2" fill={color} />
+    <circle cx="28" cy="31" r="0.5" fill="white" />
+    <circle cx="36" cy="31" r="0.5" fill="white" />
+    
+    {/* Obočí - silné */}
+    <path d="M25 28c1-1 3-2 5-1" stroke={color} strokeWidth="2" strokeLinecap="round" />
+    <path d="M34 27c2-1 4 0 5 1" stroke={color} strokeWidth="2" strokeLinecap="round" />
+    
+    {/* Nos - výrazný */}
+    <path d="M32 34v5" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+    
+    {/* Knír */}
+    <path 
+      d="M27 42c1.5 1 3 1.5 5 1.5s3.5-.5 5-1.5" 
+      stroke={color} 
+      strokeWidth="2" 
+      strokeLinecap="round"
+    />
+    
+    {/* Blesky kolem - energie */}
+    <path d="M8 20l3-5-2 5h3l-4 6" stroke={color} strokeWidth="1" opacity="0.4" />
+    <path d="M52 24l3-5-2 5h3l-4 6" stroke={color} strokeWidth="1" opacity="0.4" />
+    
+    {/* Límec */}
+    <path d="M22 50c2-2 6-3 10-3s8 1 10 3" stroke={color} strokeWidth="2" strokeLinecap="round" />
+  </svg>
+);
+
+// Albert Einstein - rozcuchané vlasy, knírek, hravý výraz
+export const EinsteinAvatar: React.FC<AvatarProps> = ({ className = '', color = 'currentColor' }) => (
+  <svg viewBox="0 0 64 64" fill="none" className={className}>
+    {/* Pozadí */}
+    <circle cx="32" cy="32" r="30" fill={color} opacity="0.1" />
+    
+    {/* Rozcuchané vlasy - charakteristické! */}
+    <path d="M16 28c-2-6 0-12 4-14" stroke={color} strokeWidth="2" strokeLinecap="round" />
+    <path d="M20 22c-2-6 1-12 5-14" stroke={color} strokeWidth="2" strokeLinecap="round" />
+    <path d="M26 18c-1-6 2-10 6-12" stroke={color} strokeWidth="2" strokeLinecap="round" />
+    <path d="M32 16c0-6 3-10 6-10" stroke={color} strokeWidth="2" strokeLinecap="round" />
+    <path d="M38 18c1-6 4-8 8-8" stroke={color} strokeWidth="2" strokeLinecap="round" />
+    <path d="M44 22c2-4 5-6 8-6" stroke={color} strokeWidth="2" strokeLinecap="round" />
+    <path d="M48 28c2-4 4-6 6-6" stroke={color} strokeWidth="2" strokeLinecap="round" />
+    
+    {/* Obličej */}
+    <ellipse cx="32" cy="36" rx="12" ry="14" stroke={color} strokeWidth="2" fill="none" />
+    
+    {/* Oči - hravé, zvědavé */}
+    <circle cx="27" cy="34" r="2" fill={color} />
+    <circle cx="37" cy="34" r="2" fill={color} />
+    <circle cx="27" cy="33" r="0.5" fill="white" />
+    <circle cx="37" cy="33" r="0.5" fill="white" />
+    
+    {/* Obočí - zvědavé */}
+    <path d="M24 30c1-2 4-2 6 0" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M34 30c2-2 5-2 6 0" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+    
+    {/* Nos */}
+    <path d="M32 36v4" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+    
+    {/* Knírek */}
+    <path 
+      d="M27 44c2 1 3 1 5 1s3 0 5-1" 
+      stroke={color} 
+      strokeWidth="2.5" 
+      strokeLinecap="round"
+    />
+    
+    {/* Úsměv - hravý */}
+    <path 
+      d="M26 48c2 2 4 3 6 3s4-1 6-3" 
+      stroke={color} 
+      strokeWidth="1.5" 
+      strokeLinecap="round"
+      fill="none"
+    />
+    
+    {/* E=mc² */}
+    <text x="4" y="58" fontSize="8" fill={color} opacity="0.3" fontStyle="italic">E=mc²</text>
+  </svg>
+);
+
 // Export všech avatarů jako objekt
 export const ProfessorAvatars = {
   davinci: DaVinciAvatar,
@@ -279,6 +420,9 @@ export const ProfessorAvatars = {
   socrates: SocratesAvatar,
   ada: AdaAvatar,
   marie: MarieAvatar,
+  steve: SteveAvatar,
+  tesla: TeslaAvatar,
+  einstein: EinsteinAvatar,
 };
 
 // Komponenta pro dynamické načítání avataru podle ID

@@ -1,1 +1,22 @@
-{}
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/admin/courses/[id]/page": "app/admin/courses/[id]/page.js",
+  "/admin/analytics/page": "app/admin/analytics/page.js",
+  "/admin/courses/page": "app/admin/courses/page.js",
+  "/admin/lessons/page": "app/admin/lessons/page.js",
+  "/admin/ai-test/page": "app/admin/ai-test/page.js",
+  "/admin/lessons/[id]/page": "app/admin/lessons/[id]/page.js",
+  "/admin/professors/page": "app/admin/professors/page.js",
+  "/admin/knowledge/page": "app/admin/knowledge/page.js",
+  "/admin/settings/page": "app/admin/settings/page.js",
+  "/admin/professors/[id]/page": "app/admin/professors/[id]/page.js",
+  "/admin/students/page": "app/admin/students/page.js",
+  "/admin/questions/page": "app/admin/questions/page.js",
+  "/admin/questions/[id]/page": "app/admin/questions/[id]/page.js",
+  "/api/chat/route": "app/api/chat/route.js",
+  "/api/explain/route": "app/api/explain/route.js",
+  "/chat/page": "app/chat/page.js",
+  "/page": "app/page.js",
+  "/professors/page": "app/professors/page.js",
+  "/admin/page": "app/admin/page.js"
+}

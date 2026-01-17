@@ -3,23 +3,34 @@
 // ============================================
 
 export type TeachingMethod = 
-  | 'visual'      // Da Vinci - kreslí, diagramy
-  | 'socratic'    // Sokrates - otázky vedou k odpovědím
-  | 'experimental'// Marie Curie - hands-on experimenty
-  | 'storytelling'// Feynman - příběhy a analogie
-  | 'debugging';  // Ada - krok za krokem, najdi chybu
+  | 'visual'         // Da Vinci - kreslí, diagramy
+  | 'socratic'       // Sokrates - otázky vedou k odpovědím
+  | 'experimental'   // Marie Curie - hands-on experimenty
+  | 'storytelling'   // Feynman - příběhy a analogie
+  | 'debugging'      // Ada - krok za krokem, najdi chybu
+  | 'simplification' // Steve Jobs - zjednodušování, odstranění zbytečného
+  | 'visualization'  // Tesla - mentální vizualizace, energie
+  | 'thought_experiment'; // Einstein - myšlenkové experimenty
 
 export type Field = 
-  | 'general'     // Da Vinci - všechno
-  | 'anatomy'     // Da Vinci
-  | 'physics'     // Feynman
-  | 'chemistry'   // Marie Curie
-  | 'biology'     // Marie Curie
-  | 'programming' // Ada Lovelace
-  | 'logic'       // Ada Lovelace
-  | 'law'         // Sokrates
-  | 'philosophy'  // Sokrates
-  | 'ethics';     // Sokrates
+  | 'general'        // Da Vinci - všechno
+  | 'anatomy'        // Da Vinci
+  | 'physics'        // Feynman, Einstein
+  | 'chemistry'      // Marie Curie
+  | 'biology'        // Marie Curie
+  | 'programming'    // Ada Lovelace
+  | 'logic'          // Ada Lovelace
+  | 'law'            // Sokrates
+  | 'philosophy'     // Sokrates, Einstein
+  | 'ethics'         // Sokrates
+  | 'design'         // Steve Jobs
+  | 'business'       // Steve Jobs
+  | 'presentation'   // Steve Jobs
+  | 'ux'             // Steve Jobs
+  | 'electricity'    // Tesla
+  | 'engineering'    // Tesla
+  | 'innovation'     // Tesla
+  | 'mathematics';   // Einstein
 
 export type AudienceLevel = 'child' | 'teen' | 'adult' | 'professional';
 

@@ -281,6 +281,146 @@ export const BioloIcons = {
       <path d="M12 14l-1 2a1 1 0 102 0l-1-2z" fill="currentColor" opacity="0.3" />
     </svg>
   ),
+  
+  // Steve Jobs - minimalistická silueta s brýlemi
+  steve: ({ className, style }: IconProps) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} style={style}>
+      {/* Hlava */}
+      <circle cx="12" cy="9" r="5" />
+      {/* Kulaté brýle */}
+      <circle cx="10" cy="8.5" r="1.5" strokeWidth="1" />
+      <circle cx="14" cy="8.5" r="1.5" strokeWidth="1" />
+      <path d="M11.5 8.5h1" strokeWidth="1" />
+      {/* Rolák */}
+      <path d="M7 14c0 0 2-1 5-1s5 1 5 1" />
+      <path d="M8 14v6a1 1 0 001 1h6a1 1 0 001-1v-6" />
+      <path d="M10 14v7M14 14v7" opacity="0.3" />
+    </svg>
+  ),
+  
+  // Nikola Tesla - elektřina a blesky
+  tesla: ({ className, style }: IconProps) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} style={style}>
+      {/* Hlava */}
+      <circle cx="12" cy="8" r="4" />
+      {/* Hladké vlasy dozadu */}
+      <path d="M8 6c0-2 2-4 4-4s4 2 4 4" />
+      {/* Knír */}
+      <path d="M10 10c0.5 0.5 1 0.5 2 0s1.5-0.5 2 0" strokeWidth="1" />
+      {/* Tělo v obleku */}
+      <path d="M8 12l-1 9h10l-1-9" />
+      <path d="M12 12v9" opacity="0.3" />
+      {/* Blesky kolem */}
+      <path d="M3 8l2-3-1 3h2l-2 3" fill="currentColor" opacity="0.3" />
+      <path d="M19 10l2-3-1 3h2l-2 3" fill="currentColor" opacity="0.3" />
+    </svg>
+  ),
+  
+  // Einstein - rozcuchané vlasy a knírek
+  einstein: ({ className, style }: IconProps) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} style={style}>
+      {/* Hlava */}
+      <circle cx="12" cy="10" r="5" />
+      {/* Rozcuchané vlasy */}
+      <path d="M7 8c-1-2 0-4 1-5" />
+      <path d="M9 6c-1-2 0-4 2-5" />
+      <path d="M12 5c0-2 1-4 2-4" />
+      <path d="M15 6c1-2 2-3 3-3" />
+      <path d="M17 8c1-1 2-2 2-3" />
+      {/* Oči */}
+      <circle cx="10" cy="9" r="0.5" fill="currentColor" />
+      <circle cx="14" cy="9" r="0.5" fill="currentColor" />
+      {/* Knírek */}
+      <path d="M10 12c1 0.5 1 0.5 2 0.5s1 0 2-0.5" strokeWidth="1.5" />
+      {/* E=mc² */}
+      <text x="3" y="20" fontSize="4" fill="currentColor" opacity="0.4" fontStyle="italic">E=mc²</text>
+    </svg>
+  ),
+  
+  // Feynman - hravý vědec s úsměvem
+  feynman: ({ className, style }: IconProps) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} style={style}>
+      {/* Hlava */}
+      <circle cx="12" cy="9" r="5" />
+      {/* Vlasy - krátké, upravené */}
+      <path d="M8 6c0-1.5 1.5-3 4-3s4 1.5 4 3" />
+      {/* Oči - přátelské */}
+      <circle cx="10" cy="8" r="0.5" fill="currentColor" />
+      <circle cx="14" cy="8" r="0.5" fill="currentColor" />
+      {/* Velký úsměv */}
+      <path d="M9 11c1.5 2 4.5 2 6 0" />
+      {/* Tělo */}
+      <path d="M8 14c0 0 2-1 4-1s4 1 4 1" />
+      <path d="M7 14v7h10v-7" />
+      {/* Feynmanovy diagramy kolem */}
+      <circle cx="4" cy="18" r="1" opacity="0.3" />
+      <path d="M4 18l3-3" opacity="0.3" />
+      <circle cx="20" cy="17" r="1" opacity="0.3" />
+      <path d="M20 17l-3-2" opacity="0.3" />
+    </svg>
+  ),
+  
+  // Sokrates - starořecký filosof
+  socrates: ({ className, style }: IconProps) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} style={style}>
+      {/* Hlava */}
+      <circle cx="12" cy="9" r="5" />
+      {/* Plešatá hlava s věncem vlasů */}
+      <path d="M7 10c0 0 0-5 5-6" opacity="0.3" />
+      <path d="M17 10c0 0 0-5-5-6" opacity="0.3" />
+      <path d="M7 8c-1 0-1.5 2-1 4" />
+      <path d="M17 8c1 0 1.5 2 1 4" />
+      {/* Vousy */}
+      <path d="M8 12c0 3 2 5 4 6" />
+      <path d="M16 12c0 3-2 5-4 6" />
+      <path d="M10 13c0 2 1 4 2 4s2-2 2-4" opacity="0.5" />
+      {/* Otazník - sokratovská metoda */}
+      <text x="18" y="8" fontSize="6" fill="currentColor" opacity="0.4">?</text>
+    </svg>
+  ),
+  
+  // Ada Lovelace - viktoriánská dáma s algoritmy
+  ada: ({ className, style }: IconProps) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} style={style}>
+      {/* Hlava */}
+      <circle cx="12" cy="8" r="4" />
+      {/* Viktoriánský účes */}
+      <path d="M8 6c0-2 1-4 4-4s4 2 4 4" />
+      <path d="M7 8c-1 0-1 2 0 3" />
+      <path d="M17 8c1 0 1 2 0 3" />
+      <path d="M9 4c-1 1-2 3-2 5" opacity="0.5" />
+      <path d="M15 4c1 1 2 3 2 5" opacity="0.5" />
+      {/* Šaty */}
+      <path d="M8 12c0 0 1-1 4-1s4 1 4 1" />
+      <path d="M6 12l-1 9h14l-1-9" />
+      <path d="M12 12v8" opacity="0.3" />
+      {/* Binární kód */}
+      <text x="2" y="20" fontSize="3" fill="currentColor" opacity="0.3">101</text>
+      <text x="18" y="20" fontSize="3" fill="currentColor" opacity="0.3">010</text>
+    </svg>
+  ),
+  
+  // Marie Curie - vědkyně s radioaktivitou
+  marie: ({ className, style }: IconProps) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} style={style}>
+      {/* Hlava */}
+      <circle cx="12" cy="8" r="4" />
+      {/* Vlasy stažené dozadu */}
+      <path d="M8 6c0-2 2-4 4-4s4 2 4 4" />
+      <path d="M8 10c-1-1-1-3 0-4" />
+      <path d="M16 10c1-1 1-3 0-4" />
+      <ellipse cx="12" cy="4" rx="2" ry="1" fill="currentColor" opacity="0.1" />
+      {/* Laboratorní plášť */}
+      <path d="M7 12c0 0 2-1 5-1s5 1 5 1" />
+      <path d="M6 12v9h12v-9" />
+      {/* Zkumavka v ruce */}
+      <path d="M17 15h2v5h-2z" />
+      <circle cx="18" cy="18" r="1" fill="currentColor" opacity="0.3" />
+      {/* Radioaktivní záření */}
+      <circle cx="18" cy="18" r="2" opacity="0.2" />
+      <circle cx="18" cy="18" r="3" opacity="0.1" />
+    </svg>
+  ),
 };
 
 // Icon mapper pro témata
