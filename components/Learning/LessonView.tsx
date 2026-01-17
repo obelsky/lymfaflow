@@ -116,7 +116,7 @@ export function LessonView({
           <div className="bg-white border border-[#E2E6EA] rounded-xl p-4 mb-4">
             <div className="flex items-start gap-3">
               <div className="w-8 h-8 rounded-lg bg-[#FAF6ED] flex items-center justify-center flex-shrink-0">
-                <span className="text-sm">💡</span>
+                <BioloIcons.lightbulb className="w-5 h-5 text-[#C9A962]" />
               </div>
               <div>
                 <h4 className="font-medium text-[#2D3640] mb-1">Tip</h4>
@@ -131,7 +131,7 @@ export function LessonView({
           <div className="bg-[#F0F5F2] border border-[#A8C4B8]/30 rounded-xl p-4 mb-6">
             <div className="flex items-start gap-3">
               <div className="w-8 h-8 rounded-lg bg-[#7A9E8E]/20 flex items-center justify-center flex-shrink-0">
-                <span className="text-sm">🎯</span>
+                <BioloIcons.target className="w-5 h-5 text-[#5C7D6D]" />
               </div>
               <div>
                 <h4 className="font-medium text-[#5C7D6D] mb-1">Vyzkoušej si</h4>

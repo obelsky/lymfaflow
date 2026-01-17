@@ -9,6 +9,8 @@ import React, { useState, useCallback } from 'react';
 
 // Components
 import { Sidebar, BottomNav } from '@/components/Navigation';
+import { KnowledgeBase } from '@/components/KnowledgeBase';
+import { BiologiqueRecherche } from '@/components/BR';
 import {
   HomeView,
   TopicView,
@@ -106,6 +108,10 @@ export default function LymfaFlowApp() {
       setSelectedLesson(null);
     } else if (tab === 'train') {
       startDailyTraining();
+    } else if (tab === 'knowledge') {
+      setCurrentView('knowledge');
+    } else if (tab === 'br') {
+      setCurrentView('home'); // BR má vlastní stav uvnitř
     } else if (tab === 'profile') {
       setCurrentView('home');
     }
@@ -273,6 +279,16 @@ export default function LymfaFlowApp() {
     // Profile
     if (activeTab === 'profile') {
       return <ProfileView user={user} />;
+    }
+    
+    // Knowledge Base (Vzdělávání)
+    if (activeTab === 'knowledge' || currentView === 'knowledge') {
+      return <KnowledgeBase />;
+    }
+    
+    // Biologique Recherche
+    if (activeTab === 'br') {
+      return <BiologiqueRecherche />;
     }
 
     // Home

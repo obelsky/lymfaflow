@@ -1,0 +1,1 @@
+export { BiologiqueRecherche } from './BiologiqueRecherche';

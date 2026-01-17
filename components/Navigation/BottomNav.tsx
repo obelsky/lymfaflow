@@ -19,6 +19,7 @@ export function BottomNav({ activeTab, onTabChange }: BottomNavProps) {
   const navItems: { id: TabType; icon: React.FC<{ className?: string }>; label: string }[] = [
     { id: 'map', icon: BioloIcons.bodyMap, label: 'Mapa' },
     { id: 'knowledge', icon: BioloIcons.knowledge, label: 'Vzdělávání' },
+    { id: 'br', icon: BioloIcons.brFlask, label: 'BR' },
     { id: 'train', icon: BioloIcons.dailyTrain, label: 'Trénink' },
     { id: 'profile', icon: BioloIcons.profile, label: 'Profil' },
   ];

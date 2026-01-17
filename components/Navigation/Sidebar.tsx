@@ -23,6 +23,7 @@ export function Sidebar({ user, activeTab, onTabChange }: SidebarProps) {
   const navItems: { id: TabType; icon: React.FC<{ className?: string }>; label: string }[] = [
     { id: 'map', icon: BioloIcons.bodyMap, label: 'Mapa těla' },
     { id: 'knowledge', icon: BioloIcons.knowledge, label: 'Vzdělávání' },
+    { id: 'br', icon: BioloIcons.brFlask, label: 'Biologique Recherche' },
     { id: 'train', icon: BioloIcons.dailyTrain, label: 'Denní trénink' },
     { id: 'profile', icon: BioloIcons.profile, label: 'Profil' },
   ];

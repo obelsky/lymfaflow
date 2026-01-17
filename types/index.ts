@@ -161,7 +161,7 @@ export interface AchievementCondition {
 
 // === APP STATE TYPES ===
 
-export type TabType = 'map' | 'knowledge' | 'train' | 'profile';
+export type TabType = 'map' | 'knowledge' | 'br' | 'train' | 'profile';
 export type ViewType = 'home' | 'topic' | 'lesson' | 'quiz' | 'results' | 'daily' | 'knowledge';
 
 export interface AppState {

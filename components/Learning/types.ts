@@ -43,7 +43,7 @@ export interface TermExplanation {
   loading: boolean;
 }
 
-export type TabType = 'map' | 'knowledge' | 'train' | 'profile';
+export type TabType = 'map' | 'knowledge' | 'br' | 'train' | 'profile';
 export type ViewType = 'home' | 'topic' | 'lesson' | 'quiz' | 'results' | 'daily' | 'knowledge';
 
 // === CONSTANTS ===
